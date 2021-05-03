@@ -59,8 +59,10 @@ int main() {
 
     // 2. Generate password.
     for (int i = 0; i < passLength; ++i) {
-        char currentCharacter = randomGen(33, 126);
-        std::cout << currentCharacter;
+        // '!' is the same as 33, but it eliminates the "casting" issue we would face if the distribution numbers were of type int
+        // FIXME: Clang-Tidy: Narrowing conversion from 'int' to signed type 'char' is implementation-defined
+        char currentChar = randomGen('!', '~');
+        std::cout << currentChar;
     }
 
     return 0;
